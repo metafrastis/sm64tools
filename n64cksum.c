@@ -42,6 +42,19 @@ int main(int argc, char *argv[])
       return EXIT_FAILURE;
    }
 
+   int i;
+   for (i = 1; i < argc; i++) {
+      if (argv[i][0] == '-') {
+         switch (argv[i][1]) {
+            case 'v':
+               g_verbosity = 1;
+               break;
+            default:
+               break;
+         }
+      }
+   }
+
    sm64_update_checksums(rom_data);
 
    write_length = write_file(file_out, rom_data, length);
